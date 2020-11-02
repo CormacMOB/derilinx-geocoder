@@ -1,3 +1,6 @@
+"""
+    Small Web application to Geocode Irish addresses
+"""
 from flask import Flask, abort, jsonify, request
 from validator import validate_address
 from geocoder import geocoder
@@ -22,6 +25,9 @@ def create_app():
         """
         address_string = request.args.get('address')
         if validate_address(address_string):
+            # TODO similar to the CLI, there is too much of the 
+            # Geocoder's internal API being used here
+            # Refactor so that geocode is called on instantiation
             address_match = geocoder.Address(address_string)
             try:
                 address_match.geocode()

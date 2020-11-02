@@ -20,6 +20,8 @@ def main():
     if validate_address(address):
         address_match = geocoder.Address(address)
         try:
+            # TODO This API needs cleaning up. There is too much of the geocoder 
+            # logic exposed here.
             address_match.geocode()
             print(address_match.coords)
         except geocoder.AddressNotMatched:
