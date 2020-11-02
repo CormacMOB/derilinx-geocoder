@@ -2,6 +2,8 @@ Geocoder
 
 ========
 
+It geocodes an address based on OSI Gazetteer Counties and Townlands. 
+
 ## Database
 
 Database build script can be found in DDL.sql. It assumes that Counties and Townland CSV files are in /tmp.
