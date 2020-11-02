@@ -1,0 +1,71 @@
+Geocoder
+
+========
+
+## Database
+
+Database build script can be found in DDL.sql. It assumes that Counties and Townland CSV files are in /tmp.
+
+Install posgis according to instructions here: https://postgis.net/install/
+
+Create PostgreSQL database with:
+
+createuser -dprs geocoder
+createdb geocoder -O geocoder
+
+Then run:
+
+```
+psql -d geocoder -f DDL.sql
+```
+
+## Environment
+
+Pipenv is used to do packages. I'm using python 3.8.
+With python 3.8 installed, install pipenv with:
+
+```
+pip3 install --user Pipenv
+```
+
+Navigate to the project directory and run:
+
+```
+pipenv install
+```
+
+## tests
+
+No test runner is installed. There are two test modules. 
+One for the interfaces: tests.py
+One for the geocoder: geocoder/tests.py
+Tests can be run by executing the test files with:
+
+```
+python tests.py
+python geocoder/tests.py
+```
+
+## Applications
+
+Run a command line application with:
+
+```
+python geocode_cli.py ADDRESS
+```
+or run a web application with
+
+```
+./run_webapp.sh
+```
+
+Optionally to run in dev mode:
+```
+export FLASK_ENV=development
+```
+
+Then use a browser to navigate to:
+
+```
+http://localhost:5000/geocoder?address=<ADDRESS>
+```
